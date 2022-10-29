@@ -1,8 +1,16 @@
 import React from 'react'
-import Text from 'components/Text'
+import Header from 'components/Header'
+import { ThemeProvider } from '@emotion/react'
+import GlobalStyle from 'components/Common/GlobalStyle'
+import { theme } from "components/Common/theme";
 
 const IndexPage = function () {
-  return <Text text="Home" />
+  return (
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <Header></Header>
+    </ThemeProvider>
+  )
 }
 
 export default IndexPage
