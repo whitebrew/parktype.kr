@@ -1,8 +1,10 @@
-import * as React from "react"
+import Introduction from "./Introduction"
+import Logo from "./Logo"
 
 const Header = () => (
   <header>
-    <div></div>
+    <Logo/>
+    <Introduction/>
   </header>
 )
 
