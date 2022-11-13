@@ -145,6 +145,9 @@ const defaultStyle = css`
     text-decoration: none;
     color: inherit;
   }
+  * {
+    box-sizing: border-box;
+  }
 `;
 
 

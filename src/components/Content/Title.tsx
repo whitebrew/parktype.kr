@@ -1,5 +1,12 @@
+import { css } from "@emotion/react"
+
 const Title = () => {
-  return <h2>BOLIVIA</h2>
+  const titleStyle = css`
+    text-align: center;
+    font-size: 2rem;
+  `
+
+  return <h2 css={titleStyle}>BOLIVIA</h2>
 }
 
 export default Title
