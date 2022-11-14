@@ -11,7 +11,6 @@ const ImageSlider = () => {
     width: 75%;
     padding: 0.5rem;
 
-
     .swiper {
       width: 100%;
       height: 500px;

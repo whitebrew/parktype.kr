@@ -13,6 +13,7 @@ const IndexPage = function () {
         <Header/>
         <Contents>
           <Content/>
+          <Content/>
         </Contents>
       </Container>
     </ThemeProvider>
@@ -20,16 +21,14 @@ const IndexPage = function () {
 }
 
 const Container = styled.div`
-  display: grid;
-  grid-template-columns: 18% 1fr;
-  width: 100%;
   background: ${({theme}) => theme.colors.bg};
   padding: 0.5rem;
   box-sizing: border-box;
 `
 
 const Contents = styled.ul`
-  margin-left: 7%;
+  width: 75%;
+  margin-left: 25%;
 `
 
 
