@@ -10,10 +10,14 @@ const Button = () => {
     text-align: center;
     padding: 1rem 0 1rem 0;
     color: #ffffff;
+    cursor: pointer;
+    &:hover {
+      color: #0051FF;
+    }
 
   `
   return (
-    <button css={buttonStyle}>TRY/BUY BOLIVIA</button>
+    <button css={buttonStyle}>TRY / BUY BOLIVIA</button>
   )
 }
 

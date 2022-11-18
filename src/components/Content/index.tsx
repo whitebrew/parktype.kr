@@ -1,4 +1,3 @@
-import React from 'react'
 import { css } from '@emotion/react'
 import Button from './Button'
 import ImageSlider from './ImageSlider'
@@ -19,7 +18,7 @@ const Content = () => {
   return (
     <div css={contentStyle}>
       <div className='contentInfo'>
-        <Title />
+        <Title text='BOLIVIA' align='center'/>
         <Paragraph />
         <Table />
         <Button />

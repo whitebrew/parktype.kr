@@ -24,12 +24,12 @@ const Container = styled.div`
   background: ${({theme}) => theme.colors.bg};
   padding: 0.5rem;
   box-sizing: border-box;
+  font-weight: 300;
 `
 
 const Contents = styled.ul`
   width: 75%;
   margin-left: 25%;
 `
-
 
 export default IndexPage

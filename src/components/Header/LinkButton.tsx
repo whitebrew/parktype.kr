@@ -11,7 +11,7 @@ const LinkButton = ({text}: ButtonProps) => {
     color: #ffffff;
     width: 47%;
     margin-right: 0.3rem;
-    padding-top: 0.5rem;
+    padding: 0.5rem 0;
     text-align: center;
   `
 

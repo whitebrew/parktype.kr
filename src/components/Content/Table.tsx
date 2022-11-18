@@ -1,5 +1,4 @@
 import { css } from '@emotion/react'
-import React from 'react'
 
 const Table = () => {
   const tableStyle = css`
@@ -12,10 +11,10 @@ const Table = () => {
       }
       td, th {
         padding: 0.3rem 0;
+        font-size: 12px;
       }
-      td {
-        font-size: 90%;
-  
+      th {
+        font-weight: 500;
       }
     }
   `
