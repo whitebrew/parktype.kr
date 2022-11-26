@@ -1,8 +1,10 @@
 import { css } from "@emotion/react"
+import { Link } from "gatsby"
 
-const Button = () => {
+const Button = ({link}: {link: string}) => {
 
   const buttonStyle = css`
+    display: block;
     border: 1px solid #5c5c5c;
     width: 100%;
     margin-top: 1rem;
@@ -17,7 +19,7 @@ const Button = () => {
 
   `
   return (
-    <button css={buttonStyle}>TRY / BUY BOLIVIA</button>
+    <Link to={link} css={buttonStyle}>TRY / BUY BOLIVIA</Link>
   )
 }
 

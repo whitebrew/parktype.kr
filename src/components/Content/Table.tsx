@@ -1,6 +1,7 @@
 import { css } from '@emotion/react'
+import { FontStyle } from 'types/ContentItem.types'
 
-const Table = () => {
+const Table = ({data}:{data: FontStyle[]}) => {
   const tableStyle = css`
     margin-top: 20px;
     table {
@@ -28,81 +29,13 @@ const Table = () => {
             <th>WIDTH</th>
             <th>ITALIC</th>
           </tr>
-          <tr>
-            <td>UltraLight</td>
-            <td>Condensed</td>
-            <td>Yes</td>
-          </tr>
-          <tr>
-            <td>Light</td>
-            <td>Condensed</td>
-            <td>Yes</td>
-          </tr>
+          {data.map(style => (
             <tr>
-            <td>Regular</td>
-            <td>Condensed</td>
-            <td>Yes</td>
-          </tr>
-            <tr>
-            <td>Medium</td>
-            <td>Condensed</td>
-            <td>Yes</td>
-          </tr>
-            <tr>
-            <td>Bold</td>
-            <td>Condensed</td>
-            <td>Yes</td>
-          </tr>
-          <tr>
-            <td>UltraLight</td>
-            <td>Normal</td>
-            <td>Yes</td>
-          </tr>
-          <tr>
-            <td>Light</td>
-            <td>Normal</td>
-            <td>Yes</td>
-          </tr>
-            <tr>
-            <td>Regular</td>
-            <td>Normal</td>
-            <td>Yes</td>
-          </tr>
-            <tr>
-            <td>Medium</td>
-            <td>Normal</td>
-            <td>Yes</td>
-          </tr>
-          <tr>
-            <td>Bold</td>
-            <td>Normal</td>
-            <td>Yes</td>
-          </tr>
-          <tr>
-            <td>UltraLight</td>
-            <td>Wide</td>
-            <td>Yes</td>
-          </tr>
-          <tr>
-            <td>Light</td>
-            <td>Wide</td>
-            <td>Yes</td>
-          </tr>
-            <tr>
-            <td>Regular</td>
-            <td>Wide</td>
-            <td>Yes</td>
-          </tr>
-            <tr>
-            <td>Medium</td>
-            <td>Wide</td>
-            <td>Yes</td>
-          </tr>
-            <tr>
-            <td>Bold</td>
-            <td>Wide</td>
-            <td>Yes</td>
-          </tr>
+              <td>{style.weight}</td>
+              <td>{style.width}</td>
+              <td>{style.italic}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

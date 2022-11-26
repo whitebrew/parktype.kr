@@ -1,8 +1,10 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { css } from "@emotion/react";
+import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
+import styled from "@emotion/styled";
 
-const ImageSlider = () => {
+const ImageSlider = ({data}: {data:{childImageSharp: {gatsbyImageData: IGatsbyImageData}}[]}) => {
   const swiperWrapper = css`
     overflow: hidden;
     position: absolute;
@@ -46,14 +48,20 @@ const ImageSlider = () => {
   return (
     <div css={swiperWrapper}>
       <Swiper>
-        <SwiperSlide>Slide 1</SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
+          { data.map((img, idx) => (
+            <SwiperSlide>
+              <Image image={img.childImageSharp.gatsbyImageData} alt={`image${idx}`} key={idx}/>
+            </SwiperSlide>
+          ))
+          }
       </Swiper>
     </div>
   )
 }
 
 export default ImageSlider
+
+const Image = styled(GatsbyImage)`
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+`
