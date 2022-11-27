@@ -29,8 +29,8 @@ const Table = ({data}:{data: FontStyle[]}) => {
             <th>WIDTH</th>
             <th>ITALIC</th>
           </tr>
-          {data.map(style => (
-            <tr>
+          {data.map((style, idx) => (
+            <tr key={idx}>
               <td>{style.weight}</td>
               <td>{style.width}</td>
               <td>{style.italic}</td>

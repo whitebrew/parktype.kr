@@ -3,58 +3,64 @@ import "swiper/css";
 import { css } from "@emotion/react";
 import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
 import styled from "@emotion/styled";
+import SwiperCore, { Autoplay } from "swiper";
+import { useState } from "react";
 
 const ImageSlider = ({data}: {data:{childImageSharp: {gatsbyImageData: IGatsbyImageData}}[]}) => {
-  const swiperWrapper = css`
-    overflow: hidden;
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 75%;
-    padding: 0.5rem;
+  const [swiper, setSwiper] = useState<SwiperCore>();
 
-    .swiper {
-      width: 100%;
-      height: 500px;
-    }
+  const handleSwiperClick = (e:any) => {
+    console.log('click', e);
+    
+  }
 
-    .swiper-slide {
-      text-align: center;
-      font-size: 18px;
-      background: #000;
-
-      /* Center slide text vertically */
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-pack: center;
-      -ms-flex-pack: center;
-      -webkit-justify-content: center;
-      justify-content: center;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
-      -webkit-align-items: center;
-      align-items: center;
-    }
-
-    .swiper-slide img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  `
   return (
     <div css={swiperWrapper}>
-      <Swiper>
-          { data.map((img, idx) => (
-            <SwiperSlide>
-              <Image image={img.childImageSharp.gatsbyImageData} alt={`image${idx}`} key={idx}/>
-            </SwiperSlide>
-          ))
-          }
-      </Swiper>
+      <div className="swiper-container">
+        <Swiper
+          loop={true}
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false,
+          }}
+          modules={[Autoplay]}
+          onSwiper={setSwiper}
+        >
+            { data.map((img, idx) => (
+              <SwiperSlide
+                key={idx}
+                onMouseEnter={() => {
+                  swiper?.autoplay.stop();
+                }}
+                onMouseLeave={() => {
+                  swiper?.autoplay.start();
+                }}
+                onClick={(e) => {
+                  handleSwiperClick(e)
+                }}
+              >
+                <Image image={img.childImageSharp.gatsbyImageData} alt={`image${idx}`}/>
+              </SwiperSlide>
+            ))
+            }
+        </Swiper>
+        <div className="slider_ctrl">
+          <button
+            className="btn_slider prev"
+            onClick={() => {
+              swiper?.slidePrev();
+            }}
+          >
+          </button>
+          <button
+            className="btn_slider next"
+            onClick={() => {
+              swiper?.slideNext();
+            }}
+          >
+          </button>
+        </div>
+      </div>
     </div>
   )
 }
@@ -64,4 +70,51 @@ export default ImageSlider
 const Image = styled(GatsbyImage)`
   width: 100%;
   border-radius: 10px 10px 0 0;
+`
+
+const swiperWrapper = css`
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 75%;
+  height: 100%;
+  padding: 0.5rem;
+
+  .swiper-container {
+    position: relative;
+    cursor: url('../../plus.png'), auto;
+  }
+
+  .swiper {
+    width: 100%;
+  }
+
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #000;
+  }
+
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .btn_slider {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 30%;
+    z-index: 10;
+    &.prev {
+      left: 0;
+      cursor: url('../../arrow-left.png'), auto;
+    }
+    &.next {
+      right: 0;
+      cursor: url('../../arrow-right.png'), auto;
+    }
+  }
 `

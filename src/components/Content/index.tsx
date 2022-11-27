@@ -21,7 +21,12 @@ const Content = ({
 }:ContentFrontmatterType) => {
   const contentStyle = css`
     color: #ffffff;
+    min-height: 80vh;
     position: relative;
+    margin-top: 40px;
+    &:first-of-type {
+      margin-top: 0;
+    }
     .contentInfo {
       width: 25%;
       padding: 0.5rem;
