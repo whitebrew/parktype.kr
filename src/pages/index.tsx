@@ -33,6 +33,7 @@ const IndexPage = function ({data: {allMarkdownRemark: { edges }}}:IndexPageProp
       )}
         </Contents>
       </Container>
+      <div id="modal-root" />
     </ThemeProvider>
   )
 }

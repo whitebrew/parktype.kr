@@ -6,7 +6,7 @@ import styled from "@emotion/styled";
 import SwiperCore, { Autoplay } from "swiper";
 import { useState } from "react";
 
-const ImageSlider = ({data}: {data:{childImageSharp: {gatsbyImageData: IGatsbyImageData}}[]}) => {
+const ImageSlider = ({data, onClick}: {data:{childImageSharp: {gatsbyImageData: IGatsbyImageData}}[], onClick:() => void}) => {
   const [swiper, setSwiper] = useState<SwiperCore>();
 
   const handleSwiperClick = (e:any) => {
@@ -37,6 +37,7 @@ const ImageSlider = ({data}: {data:{childImageSharp: {gatsbyImageData: IGatsbyIm
                 }}
                 onClick={(e) => {
                   handleSwiperClick(e)
+                  onClick()
                 }}
               >
                 <Image image={img.childImageSharp.gatsbyImageData} alt={`image${idx}`}/>
@@ -69,7 +70,6 @@ export default ImageSlider
 
 const Image = styled(GatsbyImage)`
   width: 100%;
-  border-radius: 10px 10px 0 0;
 `
 
 const swiperWrapper = css`
