@@ -26,7 +26,6 @@ const Header = ({currentThemeTitle, onClick}: ThemeType & {onClick: (value : The
       width: 100%;
       height: auto;
       position: relative;
-      background: ${currentTheme.bg};
       font-size: 13px;
       .headerInfo {
         display: flex;
