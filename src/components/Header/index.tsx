@@ -5,8 +5,34 @@ import Introduction from "./Introduction"
 import Logo from "./Logo"
 import Title from "components/Content/Title"
 import { theme } from "components/Common/theme"
+import { ThemeType } from "types/ContentItem.types"
 
-const Header = () => {
+const Header = ({currentThemeTitle, onClick}: ThemeType & {onClick: (value : ThemeType['currentThemeTitle']) => void}) => {
+  const currentTheme = theme.colors[currentThemeTitle];
+
+  const headerStyle = css`
+    color: ${currentTheme.text};
+    font-size: 14px;
+    line-height: 1.3;
+    letter-spacing: 0.04rem;
+    padding: 0.5rem;
+    height: 100vh;
+    width: 18%;
+    position: fixed;
+    box-sizing: border-box;
+    mix-blend-mode: difference;
+
+    @media (max-width: 768px) {
+      width: 100%;
+      height: auto;
+      position: relative;
+      background: ${currentTheme.bg};
+      font-size: 13px;
+      .headerInfo {
+        display: flex;
+      }
+    }
+  `
 
   return (
     <header css={headerStyle}>
@@ -15,16 +41,16 @@ const Header = () => {
         <Introduction/>
       </div>
       <ButtonGroup>
-        <LinkButton text="Contact"/>
-        <LinkButton text="Instagram"/>
+        <LinkButton text="Contact" link="/" currentThemeTitle={currentThemeTitle} />
+        <LinkButton text="Instagram" link="/" currentThemeTitle={currentThemeTitle} />
       </ButtonGroup>
       <StyleTheme>
         <Title text='Page Display' align="center"/>
         <ButtonGroup>
-          <LinkButton text="White"/>
-          <LinkButton text="Black"/>
-          <LinkButton text="Cream"/>
-          <LinkButton text="Neon"/>
+          <LinkButton text="White" link="#" onClick={onClick} currentThemeTitle={currentThemeTitle}/>
+          <LinkButton text="Black" link="#" onClick={onClick} currentThemeTitle={currentThemeTitle}/>
+          <LinkButton text="Cream" link="#" onClick={onClick} currentThemeTitle={currentThemeTitle}/>
+          <LinkButton text="Neon" link="#" onClick={onClick} currentThemeTitle={currentThemeTitle}/>
         </ButtonGroup>
       </StyleTheme>
     </header>
@@ -33,32 +59,11 @@ const Header = () => {
 
 export default Header
 
-const headerStyle = css`
-  color: ${theme.colors.black.text};
-  font-size: 14px;
-  line-height: 1.3;
-  letter-spacing: 0.04rem;
-  padding: 0.5rem;
-  height: 100vh;
-  width: 18%;
-  position: fixed;
-  box-sizing: border-box;
 
-  @media (max-width: 768px) {
-    width: 100%;
-    height: auto;
-    position: relative;
-    background: ${theme.colors.black.bg};
-    font-size: 13px;
-    .headerInfo {
-      display: flex;
-    }
-  }
-`
 
 const ButtonGroup = styled.div`
   display: flex;
-  margin-top: 2rem;
+  margin-top: 1rem;
   flex-wrap: wrap;
   justify-content: space-between;
   

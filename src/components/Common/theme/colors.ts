@@ -1,31 +1,32 @@
 const colors = {
-  black : {
+  Black : {
     bg:'#000',
     text: '#ffffff',
     border: '#5c5c5c',
     hover: '#fff',
     active: '#0051ff',
   },
-  white : {
-    bg:'#ececec',
-    text: '#000',
+  White : {
+    bg:'#ffffff',
+    text: '#ffffff',
     border: '#5c5c5c',
-    hover: '#000',
-    active: '#f3b800',
+    hover: '#fff',
+    active: '#0051ff',
   },
-  cream : {
-    bg:'#eaeadc',
-    text: '#000',
+  Cream : {
+    bg:'#fffff0',
+    text: '#ffffff',
     border: '#5c5c5c',
-    hover: '#000',
-    active: '#f3b800',
+    hover: '#fff',
+    active: '#0051ff',
   },
-  neon : {
-    bg:'#e900ea',
-    text: '#000',
+  Neon : {
+    bg:'#ff00ff',
+    text: '#ffffff',
     border: '#5c5c5c',
-    hover: '#000',
-    active: '#f3b800',
+    hover: '#fff',
+    active: '#0051ff',
   }
 };
+
 export default colors;

@@ -6,10 +6,70 @@ import styled from "@emotion/styled";
 import SwiperCore, { Autoplay } from "swiper";
 import { useState } from "react";
 import { theme } from "components/Common/theme";
+import { ThemeType } from "types/ContentItem.types";
 
-const ImageSlider = ({data, onClick}: {data:{childImageSharp: {gatsbyImageData: IGatsbyImageData}}[], onClick:() => void}) => {
+const ImageSlider = ({data, onClick, currentThemeTitle}: {data:{childImageSharp: {gatsbyImageData: IGatsbyImageData}}[], onClick:() => void} & ThemeType) => {
+  const currentTheme = theme.colors[currentThemeTitle];
+
+  const Image = styled(GatsbyImage)`
+    width: 100%;
+  `
+
+  const swiperWrapper = css`
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 75%;
+    height: 100%;
+    padding: 0.5rem;
+    
+
+    .swiper-container {
+      position: relative;
+      cursor: url('../../plus.png'), auto;
+    }
+
+    .swiper {
+      width: 100%;
+    }
+
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #121212;
+    }
+
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      mix-blend-mode: difference;
+    }
+
+    .btn_slider {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 30%;
+      z-index: 10;
+      &.prev {
+        left: 0;
+        cursor: url('../../arrow-left.png'), auto;
+      }
+      &.next {
+        right: 0;
+        cursor: url('../../arrow-right.png'), auto;
+      }
+    }
+
+    @media (max-width: 768px) {
+      position: relative;
+      width: 100%;
+    }
+  `
+
   const [swiper, setSwiper] = useState<SwiperCore>();
-
 
   return (
     <div css={swiperWrapper}>
@@ -32,9 +92,7 @@ const ImageSlider = ({data, onClick}: {data:{childImageSharp: {gatsbyImageData: 
                 onMouseLeave={() => {
                   swiper?.autoplay.start();
                 }}
-                onClick={(e) => {
-                  onClick()
-                }}
+                onClick={() => onClick()}
               >
                 <Image image={img.childImageSharp.gatsbyImageData} alt={`image${idx}`}/>
               </SwiperSlide>
@@ -64,59 +122,3 @@ const ImageSlider = ({data, onClick}: {data:{childImageSharp: {gatsbyImageData: 
 
 export default ImageSlider
 
-const Image = styled(GatsbyImage)`
-  width: 100%;
-`
-
-const swiperWrapper = css`
-  overflow: hidden;
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 75%;
-  height: 100%;
-  padding: 0.5rem;
-
-  .swiper-container {
-    position: relative;
-    cursor: url('../../plus.png'), auto;
-  }
-
-  .swiper {
-    width: 100%;
-  }
-
-  .swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    background: ${theme.colors.black.bg};
-  }
-
-  .swiper-slide img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    mix-blend-mode: difference;
-  }
-
-  .btn_slider {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 30%;
-    z-index: 10;
-    &.prev {
-      left: 0;
-      cursor: url('../../arrow-left.png'), auto;
-    }
-    &.next {
-      right: 0;
-      cursor: url('../../arrow-right.png'), auto;
-    }
-  }
-
-  @media (max-width: 768px) {
-    position: relative;
-    width: 100%;
-  }
-`

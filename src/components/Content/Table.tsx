@@ -1,14 +1,15 @@
 import { css } from '@emotion/react'
 import { theme } from 'components/Common/theme'
-import { FontStyle } from 'types/ContentItem.types'
+import { FontStyle, ThemeType } from 'types/ContentItem.types'
 
-const Table = ({data}:{data: FontStyle[]}) => {
+const Table = ({data, currentThemeTitle}:{data: FontStyle[]} & ThemeType) => {
+  const currentTheme = theme.colors[currentThemeTitle];
   const tableStyle = css`
     margin-top: 20px;
     table {
       width: 100%;
       tr {
-        border-top: 1px solid ${theme.colors.black.border};
+        border-top: 1px solid ${currentTheme.border};
         text-align: left;
       }
       td, th {

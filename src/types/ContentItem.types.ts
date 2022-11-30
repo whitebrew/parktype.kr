@@ -1,3 +1,4 @@
+import { theme } from 'components/Common/theme'
 import { IGatsbyImageData } from 'gatsby-plugin-image'
 
 export type FontStyle = {
@@ -27,4 +28,8 @@ export type ContentListItemType = {
     id: string
     frontmatter: ContentFrontmatterType
   }
+}
+
+export type ThemeType = {
+  currentThemeTitle : keyof typeof theme.colors
 }

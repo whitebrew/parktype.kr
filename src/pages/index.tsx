@@ -5,7 +5,8 @@ import { theme } from 'components/Common/theme'
 import Content from 'components/Content'
 import styled from '@emotion/styled'
 import { graphql } from 'gatsby'
-import {ContentListItemType} from 'types/ContentItem.types'
+import {ContentListItemType, ThemeType} from 'types/ContentItem.types'
+import { useState } from 'react'
 
 type IndexPageProps = {
   data: {
@@ -16,34 +17,16 @@ type IndexPageProps = {
 }
 
 const IndexPage = function ({data: {allMarkdownRemark: { edges }}}:IndexPageProps) {
-  return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <Container>
-        <Header/>
-        <Contents>
-        {edges.map(
-        ({
-          node: { id, frontmatter },
-        }) => (
-          <Content {...frontmatter} key={id}/>
-        )
-      )}
-        </Contents>
-      </Container>
-      <div id="modal-root"/>
-    </ThemeProvider>
-  )
-}
+  const [currentThemeTitle, setCurrentThemeTitle] = useState<keyof typeof theme.colors>('Black')
+  const currentTheme = theme.colors[currentThemeTitle];
 
-const Container = styled.div`
-  background: ${({theme}) => theme.colors.black.bg};
+  const Container = styled.div`
+  background: ${currentTheme.bg};
   padding: 0.5rem;
   box-sizing: border-box;
-  font-weight: 300;
+  font-weight: 400;
   min-height: 100vh;
-  // background-color: rgba(255, 255, 255, 0);
-  background-image: radial-gradient(circle at 0% 50%, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 0%, rgb(29, 29, 29) 100%, rgb(29, 29, 29) 100%);
+  background-image: ${ currentThemeTitle === 'Black' && `radial-gradient(circle at 0% 50%, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 0%, rgb(29, 29, 29) 100%, rgb(29, 29, 29) 100%)`};
 
   @media (max-width: 768px) {
     padding: 0;
@@ -51,14 +34,40 @@ const Container = styled.div`
   }
 `
 
-const Contents = styled.ul`
-  width: 75%;
-  margin-left: 25%;
-  @media (max-width: 768px) {
-    width: 100%;
-    margin-left: 0;
-  }
-`
+  const Contents = styled.ul`
+    width: 75%;
+    margin-left: 25%;
+    @media (max-width: 768px) {
+      width: 100%;
+      margin-left: 0;
+    }
+  `
+
+const handleTheme = (value : ThemeType['currentThemeTitle']) => {
+  console.log(value);
+  setCurrentThemeTitle(value)
+}
+  return (
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <Container>
+        <Header currentThemeTitle={currentThemeTitle} onClick={handleTheme}/>
+        <Contents>
+        {edges.map(
+          ({
+            node: { id, frontmatter },
+          }) => (
+            <Content currentThemeTitle={currentThemeTitle} {...frontmatter} key={id}/>
+          )
+        )} 
+        </Contents>
+      </Container>
+      <div id="modal-root"/>
+    </ThemeProvider>
+  )
+}
+
+
 
 export default IndexPage
 
