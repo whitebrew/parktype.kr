@@ -1,4 +1,5 @@
 import { css } from '@emotion/react'
+import { theme } from 'components/Common/theme'
 import { FontStyle } from 'types/ContentItem.types'
 
 const Table = ({data}:{data: FontStyle[]}) => {
@@ -7,7 +8,7 @@ const Table = ({data}:{data: FontStyle[]}) => {
     table {
       width: 100%;
       tr {
-        border-top: 1px solid #ffffff;
+        border-top: 1px solid ${theme.colors.black.border};
         text-align: left;
       }
       td, th {

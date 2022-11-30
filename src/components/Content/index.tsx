@@ -1,6 +1,5 @@
 import { css } from '@emotion/react'
-import styled from '@emotion/styled'
-import { GatsbyImage } from 'gatsby-plugin-image'
+import { theme } from 'components/Common/theme'
 import { useState } from 'react'
 import { ContentFrontmatterType } from 'types/ContentItem.types'
 import Button from './Button'
@@ -25,7 +24,6 @@ const Content = ({
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const handleSwiperClick = () => {
-    console.log('여기');
     setIsModalOpen(true);
   }
 
@@ -52,15 +50,25 @@ const Content = ({
 export default Content
 
 const contentStyle = css`
-  color: #ffffff;
-  min-height: 80vh;
+  color: ${theme.colors.black.text};
   position: relative;
   margin-top: 40px;
+  font-size: 14px;
+
   &:first-of-type {
     margin-top: 0;
   }
+
   .contentInfo {
     width: 25%;
     padding: 0.5rem;
   }
+
+  @media (max-width: 768px) {
+    font-size: 13px;
+    .contentInfo{
+      width: 100%;
+    }
+  }
+
 `

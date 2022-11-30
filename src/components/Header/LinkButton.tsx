@@ -1,4 +1,5 @@
 import { css } from "@emotion/react"
+import { theme } from "components/Common/theme"
 
 type ButtonProps = {
   text: string
@@ -7,12 +8,12 @@ type ButtonProps = {
 const LinkButton = ({text}: ButtonProps) => {
 
   const buttonStyle = css`
-    border-top: 1px solid #ffffff;
-    color: #ffffff;
-    width: 47%;
-    margin-right: 0.3rem;
+    border-top: 1px solid ${theme.colors.black.border};
+    color: ${theme.colors.black.text};
+    width: calc(100%/2 - 0.3rem);
     padding: 0.5rem 0;
     text-align: center;
+
   `
 
   return (

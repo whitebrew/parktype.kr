@@ -1,5 +1,4 @@
 import { css } from '@emotion/react'
-import React from 'react'
 
 const Paragraph = ({description, available, productionPeriod, glyphset}:{description: string, available:string, productionPeriod:string, glyphset:string}) => {
   const paragraphStyle = css`

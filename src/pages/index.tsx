@@ -25,30 +25,39 @@ const IndexPage = function ({data: {allMarkdownRemark: { edges }}}:IndexPageProp
         {edges.map(
         ({
           node: { id, frontmatter },
-        }) => {
-          console.log('frontmatter: ', frontmatter)
-          return <Content {...frontmatter} key={id}/>
-        }
-          
+        }) => (
+          <Content {...frontmatter} key={id}/>
+        )
       )}
         </Contents>
       </Container>
-      <div id="modal-root" />
+      <div id="modal-root"/>
     </ThemeProvider>
   )
 }
 
 const Container = styled.div`
-  background: ${({theme}) => theme.colors.bg};
+  background: ${({theme}) => theme.colors.black.bg};
   padding: 0.5rem;
   box-sizing: border-box;
   font-weight: 300;
   min-height: 100vh;
+  // background-color: rgba(255, 255, 255, 0);
+  background-image: radial-gradient(circle at 0% 50%, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 0%, rgb(29, 29, 29) 100%, rgb(29, 29, 29) 100%);
+
+  @media (max-width: 768px) {
+    padding: 0;
+    padding-bottom: 4rem;
+  }
 `
 
 const Contents = styled.ul`
   width: 75%;
   margin-left: 25%;
+  @media (max-width: 768px) {
+    width: 100%;
+    margin-left: 0;
+  }
 `
 
 export default IndexPage

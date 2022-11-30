@@ -1,6 +1,8 @@
+import { css } from "@emotion/react"
+
 const Introduction = () => {
   return (
-    <p>
+    <p css={introductionStyle}>
       My practice is focused on typographic systems but includes custom
       typefaces, letterings, graphic design and art direction. Most of my work
       is derived from historical models in order to re-contextualize their
@@ -10,3 +12,9 @@ const Introduction = () => {
 }
 
 export default Introduction
+
+const introductionStyle = css`
+  @media (max-width: 768px) {
+    width: 50%;
+  }
+`

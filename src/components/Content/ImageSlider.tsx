@@ -5,14 +5,11 @@ import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
 import styled from "@emotion/styled";
 import SwiperCore, { Autoplay } from "swiper";
 import { useState } from "react";
+import { theme } from "components/Common/theme";
 
 const ImageSlider = ({data, onClick}: {data:{childImageSharp: {gatsbyImageData: IGatsbyImageData}}[], onClick:() => void}) => {
   const [swiper, setSwiper] = useState<SwiperCore>();
 
-  const handleSwiperClick = (e:any) => {
-    console.log('click', e);
-    
-  }
 
   return (
     <div css={swiperWrapper}>
@@ -36,7 +33,6 @@ const ImageSlider = ({data, onClick}: {data:{childImageSharp: {gatsbyImageData: 
                   swiper?.autoplay.start();
                 }}
                 onClick={(e) => {
-                  handleSwiperClick(e)
                   onClick()
                 }}
               >
@@ -93,13 +89,14 @@ const swiperWrapper = css`
   .swiper-slide {
     text-align: center;
     font-size: 18px;
-    background: #000;
+    background: ${theme.colors.black.bg};
   }
 
   .swiper-slide img {
     display: block;
     width: 100%;
     height: 100%;
+    mix-blend-mode: difference;
   }
 
   .btn_slider {
@@ -116,5 +113,10 @@ const swiperWrapper = css`
       right: 0;
       cursor: url('../../arrow-right.png'), auto;
     }
+  }
+
+  @media (max-width: 768px) {
+    position: relative;
+    width: 100%;
   }
 `
