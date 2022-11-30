@@ -78,7 +78,7 @@ const Modal = ({ data, visible, onClose }: Props) => {
 export default Modal;
 
 const Image = styled(GatsbyImage)`
-  width: 100%;
+  height: 100%;
 `
 
 const modalStyle = css`

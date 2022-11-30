@@ -12,7 +12,7 @@ const ImageSlider = ({data, onClick, currentThemeTitle}: {data:{childImageSharp:
   const currentTheme = theme.colors[currentThemeTitle];
 
   const Image = styled(GatsbyImage)`
-    width: 100%;
+  height: 100%;
   `
 
   const swiperWrapper = css`

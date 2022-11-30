@@ -38,6 +38,8 @@ const Content = ({
 
   .contentInfo {
     width: 25%;
+    min-height: 80vh;
+    height: auto;
     padding: 0.5rem;
   }
 
@@ -45,6 +47,7 @@ const Content = ({
     font-size: 13px;
     .contentInfo{
       width: 100%;
+      min-height: auto;
     }
   }
 `
