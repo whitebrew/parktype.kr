@@ -5,11 +5,8 @@ import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
 import styled from "@emotion/styled";
 import SwiperCore, { Autoplay } from "swiper";
 import { useState } from "react";
-import { theme } from "components/Common/theme";
-import { ThemeType } from "types/ContentItem.types";
 
-const ImageSlider = ({data, onClick, currentThemeTitle}: {data:{childImageSharp: {gatsbyImageData: IGatsbyImageData}}[], onClick:() => void} & ThemeType) => {
-  const currentTheme = theme.colors[currentThemeTitle];
+const ImageSlider = ({data, onClick}: {data:{childImageSharp: {gatsbyImageData: IGatsbyImageData}}[], onClick:() => void}) => {
 
   const Image = styled(GatsbyImage)`
   height: 100%;

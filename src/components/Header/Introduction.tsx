@@ -1,20 +1,28 @@
 import { css } from "@emotion/react"
 
 const Introduction = () => {
+  const introductionStyle = css`
+    @media (max-width: 1140px) and (min-width: 769px) {
+      font-size: 13px;
+    }
+    @media (max-width: 768px) {
+      width: 50%;
+    }
+    .sub-title {
+      font-weight: bold;
+    }
+  `
   return (
     <p css={introductionStyle}>
-      My practice is focused on typographic systems but includes custom
-      typefaces, letterings, graphic design and art direction. Most of my work
-      is derived from historical models in order to re-contextualize their
-      function in a contemporary setting.
+      <span className="sub-title">TYPEFACE BRANDING STUDIO</span>
+      <br></br><br></br>
+      I enjoy making letters in any way.
+      I try to keep the results of seeing, touching, and handling letters here. 
+      He learns calligraphy in his teens, touches fonts in his 20s, and now in his 30s, he is doing typeface branding.
+      I hope that the talent you have can be developed and useful.
     </p>
   )
 }
 
 export default Introduction
 
-const introductionStyle = css`
-  @media (max-width: 768px) {
-    width: 50%;
-  }
-`

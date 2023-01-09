@@ -1,5 +1,4 @@
 import { css } from "@emotion/react"
-import { theme } from "components/Common/theme"
 import { ThemeType } from "types/ContentItem.types"
 
 type ButtonProps = {
@@ -8,22 +7,21 @@ type ButtonProps = {
   onClick?: (value : ThemeType['currentThemeTitle']) => void
 }
 
-const LinkButton = ({text, link, onClick, currentThemeTitle}: ButtonProps & ThemeType) => {
-  const currentTheme = theme.colors[currentThemeTitle];
+const LinkButton = ({text, link, onClick}: ButtonProps) => {
 
   const handleThemeButton = (e:any) => {
     onClick && onClick(e.target.text)
   }
 
   const buttonStyle = css`
-    border-top: 1px solid ${currentTheme.border};
-    color: ${currentTheme.text};
+    border-top: 1px solid #5c5c5c;
+    color: #ffffff;
     width: calc(100%/2 - 0.3rem);
     padding: 0.5rem 0;
     text-align: center;
     font-weight: 400;
     &:hover {
-      border-top: 1px solid ${currentTheme.hover};
+      border-top: 1px solid #ffffff};
     }
   `
 

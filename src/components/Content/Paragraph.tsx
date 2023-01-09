@@ -1,24 +1,41 @@
 import { css } from '@emotion/react'
 
-const Paragraph = ({description, available, productionPeriod, glyphset}:{description: string, available:string, productionPeriod:string, glyphset:string}) => {
+const Paragraph = ({productionPeriod, format ,spec}:{productionPeriod:string, format:string[], spec:string[]}) => {
   const paragraphStyle = css`
     line-height: 1.3;
-    .font-desc {
-      margin-top: 20px;
-      
-    }
     .font-info {
       margin-top: 20px;
+      word-break: break-word;
+      p {
+        display: flex;
+        span {
+          &:first-of-type {
+            flex-shrink: 0;
+            font-weight: bold;
+            margin-right: 4px;
+          }
+        }
+        &:first-of-type {
+          span {
+            flex-shrink: 1;
+          }
+        }
+      }
     }
   `
    
   return (
     <div css={paragraphStyle}>
-      <p className='font-desc'>{description}</p>
       <div className='font-info'>
-        <p>Available: <span>{available}</span></p>
-        <p>Years of Production: <span>{productionPeriod}</span></p>
-        <p>Glyphset: <span>{glyphset}</span></p>
+        <p><span>Years of Production: </span><span>{productionPeriod}</span></p>
+        <p>
+          <span>Format: </span>
+          <span>{format}</span>
+        </p>
+        <p>
+          <span>Spec: </span>
+          <span>{spec}</span>
+        </p>
       </div>
     </div>
   )

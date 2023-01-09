@@ -1,7 +1,6 @@
 import { css } from '@emotion/react'
-import { theme } from 'components/Common/theme'
 import { useState } from 'react'
-import { ContentFrontmatterType, ThemeType } from 'types/ContentItem.types'
+import { ContentFrontmatterType } from 'types/ContentItem.types'
 import Button from './Button'
 import ImageSlider from './ImageSlider'
 import Modal from './Modal'
@@ -9,24 +8,21 @@ import Paragraph from './Paragraph'
 import Table from './Table'
 import Title from './Title'
 
-type ContentProps = ContentFrontmatterType & ThemeType
+type ContentProps = ContentFrontmatterType
 
 const Content = ({
   title,
-  date,
-  description,
-  available,
+  order,
   productionPeriod,
-  glyphset,
   fontStyle,
+  format,
+  spec,
   link,
   images,
-  currentThemeTitle
 }:ContentProps) => {
-  const currentTheme = theme.colors[currentThemeTitle];
 
   const contentStyle = css`
-  color: ${currentTheme.text};
+  color: #ffffff;
   position: relative;
   margin-top: 40px;
   font-size: 14px;
@@ -41,6 +37,10 @@ const Content = ({
     min-height: 80vh;
     height: auto;
     padding: 0.5rem;
+  }
+
+  @media (max-width: 1140px) and (min-width: 769px) {
+    font-size: 13px;
   }
 
   @media (max-width: 768px) {
@@ -62,12 +62,12 @@ const Content = ({
     <div css={contentStyle}>
       <div className='contentInfo'>
         <Title text={title} align='center'/>
-        <Paragraph description={description} available={available} productionPeriod={productionPeriod} glyphset={glyphset}/>
-        <Table data={fontStyle} currentThemeTitle={currentThemeTitle}/>
-        <Button link={link} currentThemeTitle={currentThemeTitle}/>
+        <Paragraph productionPeriod={productionPeriod} format={format} spec={spec}/>
+        <Table data={fontStyle} />
+        <Button link={link}/>
       </div>
       <div>
-        <ImageSlider data={images} currentThemeTitle={currentThemeTitle} onClick={handleSwiperClick}/>
+        <ImageSlider data={images} onClick={handleSwiperClick}/>
       </div>
       <Modal
         data={images}

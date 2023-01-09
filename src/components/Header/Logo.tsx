@@ -6,6 +6,7 @@ const Logo = () => {
     font-size: 2.25rem;
     margin-bottom: 2rem;
     line-height: 1;
+    font-weight: bold;
 
     @media (max-width: 768px) {
       width: 50%;
@@ -15,7 +16,7 @@ const Logo = () => {
 
   return ( 
     <h1 css={logoStyle}>
-      <Link to="/">David Einwaller<br/>(Graphic &)<br/>Type Design</Link>
+      <Link to="/">PARKTYPE</Link>
     </h1>
   )
 }

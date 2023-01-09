@@ -26,7 +26,17 @@ const IndexPage = function ({data: {allMarkdownRemark: { edges }}}:IndexPageProp
   box-sizing: border-box;
   font-weight: 400;
   min-height: 100vh;
-  background-image: ${ currentThemeTitle === 'Black' && `radial-gradient(circle at 0% 50%, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 0%, rgb(29, 29, 29) 100%, rgb(29, 29, 29) 100%)`};
+
+  &::before {
+    position: fixed;
+    background-image: ${ currentThemeTitle === 'Black' && `radial-gradient(circle at 0% 50%, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 0%, rgb(29, 29, 29) 100%, rgb(29, 29, 29) 100%)`};
+    display: block;
+    content: '';
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
 
   @media (max-width: 768px) {
     padding: 0;
@@ -44,20 +54,19 @@ const IndexPage = function ({data: {allMarkdownRemark: { edges }}}:IndexPageProp
   `
 
 const handleTheme = (value : ThemeType['currentThemeTitle']) => {
-  console.log(value);
   setCurrentThemeTitle(value)
 }
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Container>
-        <Header currentThemeTitle={currentThemeTitle} onClick={handleTheme}/>
+        <Header onClick={handleTheme}/>
         <Contents>
         {edges.map(
           ({
             node: { id, frontmatter },
           }) => (
-            <Content currentThemeTitle={currentThemeTitle} {...frontmatter} key={id}/>
+            <Content {...frontmatter} key={id}/>
           )
         )} 
         </Contents>
@@ -74,23 +83,22 @@ export default IndexPage
 export const getContentList = graphql`
   query getContentList {
     allMarkdownRemark(
-      sort: { order: DESC, fields: [frontmatter___date, frontmatter___title] }
+      sort: { fields: [frontmatter___order] }
     ) {
       edges {
         node {
           id
           frontmatter {
+            order
             title
-            description
-            date(formatString: "YYYY.MM.DD.")
-            available
             productionPeriod
-            glyphset
             fontStyle {
-              weight
-              width
-              italic
+              ko
+              en
+              ps
             }
+            format
+            spec
             link
             images {
               childImageSharp {

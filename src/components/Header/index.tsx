@@ -4,14 +4,12 @@ import LinkButton from "./LinkButton"
 import Introduction from "./Introduction"
 import Logo from "./Logo"
 import Title from "components/Content/Title"
-import { theme } from "components/Common/theme"
 import { ThemeType } from "types/ContentItem.types"
 
-const Header = ({currentThemeTitle, onClick}: ThemeType & {onClick: (value : ThemeType['currentThemeTitle']) => void}) => {
-  const currentTheme = theme.colors[currentThemeTitle];
+const Header = ({onClick}: {onClick: (value : ThemeType['currentThemeTitle']) => void}) => {
 
   const headerStyle = css`
-    color: ${currentTheme.text};
+    color: #ffffff;
     font-size: 14px;
     line-height: 1.3;
     letter-spacing: 0.04rem;
@@ -40,16 +38,16 @@ const Header = ({currentThemeTitle, onClick}: ThemeType & {onClick: (value : The
         <Introduction/>
       </div>
       <ButtonGroup>
-        <LinkButton text="Contact" link="/" currentThemeTitle={currentThemeTitle} />
-        <LinkButton text="Instagram" link="/" currentThemeTitle={currentThemeTitle} />
+        <LinkButton text="Contact" link="mailto:ppparktype@gmail.com" />
+        <LinkButton text="Instagram" link="https://www.instagram.com/parktype" />
       </ButtonGroup>
       <StyleTheme>
         <Title text='Page Display' align="center"/>
         <ButtonGroup>
-          <LinkButton text="White" link="#" onClick={onClick} currentThemeTitle={currentThemeTitle}/>
-          <LinkButton text="Black" link="#" onClick={onClick} currentThemeTitle={currentThemeTitle}/>
-          <LinkButton text="Cream" link="#" onClick={onClick} currentThemeTitle={currentThemeTitle}/>
-          <LinkButton text="Neon" link="#" onClick={onClick} currentThemeTitle={currentThemeTitle}/>
+          <LinkButton text="White" link="#" onClick={onClick} />
+          <LinkButton text="Black" link="#" onClick={onClick} />
+          <LinkButton text="Cream" link="#" onClick={onClick} />
+          <LinkButton text="Neon" link="#" onClick={onClick} />
         </ButtonGroup>
       </StyleTheme>
     </header>
