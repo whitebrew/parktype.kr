@@ -7,6 +7,7 @@ import styled from '@emotion/styled'
 import { graphql } from 'gatsby'
 import {ContentListItemType, ThemeType} from 'types/ContentItem.types'
 import { useState } from 'react'
+import Footer from 'components/Footer'
 
 type IndexPageProps = {
   data: {
@@ -70,6 +71,7 @@ const handleTheme = (value : ThemeType['currentThemeTitle']) => {
           )
         )} 
         </Contents>
+        <Footer/>
       </Container>
       <div id="modal-root"/>
     </ThemeProvider>
