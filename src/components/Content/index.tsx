@@ -19,64 +19,71 @@ const Content = ({
   spec,
   link,
   images,
-}:ContentProps) => {
-
+}: ContentProps) => {
   const contentStyle = css`
-  color: #ffffff;
-  position: relative;
-  margin-top: 40px;
-  font-size: 14px;
-  mix-blend-mode: difference;
+    color: #ffffff;
+    position: relative;
+    margin-top: 40px;
+    font-size: 14px;
+    mix-blend-mode: difference;
 
-  &:first-of-type {
-    margin-top: 0;
-  }
-
-  .contentInfo {
-    width: 25%;
-    min-height: 80vh;
-    height: auto;
-    padding: 0.5rem;
-  }
-
-  @media (max-width: 1140px) and (min-width: 769px) {
-    font-size: 13px;
-  }
-
-  @media (max-width: 768px) {
-    font-size: 13px;
-    .contentInfo{
-      width: 100%;
-      min-height: auto;
+    &:first-of-type {
+      margin-top: 0;
     }
-  }
-`
+
+    .contentInfo {
+      width: 25%;
+      min-height: 80vh;
+      height: auto;
+      padding: 0.5rem;
+    }
+
+    @media (max-width: 1140px) and (min-width: 769px) {
+      font-size: 13px;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 13px;
+      .contentInfo {
+        width: 100%;
+        min-height: auto;
+      }
+    }
+  `
 
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [initialSlide, setInitialSlide] = useState<undefined | number>(
+    undefined,
+  )
 
-  const handleSwiperClick = () => {
-    setIsModalOpen(true);
+  const handleSwiperClick = (idx: number) => {
+    setInitialSlide(idx)
+    setIsModalOpen(true)
   }
 
   return (
     <div css={contentStyle}>
-      <div className='contentInfo'>
-        <Title text={title} align='center'/>
-        <Paragraph productionPeriod={productionPeriod} format={format} spec={spec}/>
+      <div className="contentInfo">
+        <Title text={title} align="center" />
+        <Paragraph
+          productionPeriod={productionPeriod}
+          format={format}
+          spec={spec}
+        />
         <Table data={fontStyle} />
-        <Button link={link}/>
+        <Button link={link} />
       </div>
       <div>
-        <ImageSlider data={images} onClick={handleSwiperClick}/>
+        <ImageSlider data={images} onClick={handleSwiperClick} />
       </div>
       <Modal
         data={images}
         visible={isModalOpen}
         onClose={() => setIsModalOpen(false)}
+        initialSlide={initialSlide}
       />
     </div>
   )
 }
 
 export default Content
-

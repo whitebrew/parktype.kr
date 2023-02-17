@@ -1,64 +1,62 @@
-import { css } from '@emotion/react';
-import styled from '@emotion/styled';
-import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
-import { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore from "swiper";
+import { css } from '@emotion/react'
+import styled from '@emotion/styled'
+import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image'
+import { useEffect, useState } from 'react'
+import ReactDOM from 'react-dom'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import SwiperCore from 'swiper'
 
 type Props = {
-  data:  {
+  data: {
     childImageSharp: {
-        gatsbyImageData: IGatsbyImageData;
-    };
+      gatsbyImageData: IGatsbyImageData
+    }
   }[]
   visible: boolean
   onClose: () => void
+  initialSlide: undefined | number
 }
 
-const Modal = ({ data, visible, onClose }: Props) => {
-  const [swiper, setSwiper] = useState<SwiperCore>();
-  const [isBrowser, setIsBrowser] = useState(false);
+const Modal = ({ data, visible, onClose, initialSlide }: Props) => {
+  const [swiper, setSwiper] = useState<SwiperCore>()
+  const [isBrowser, setIsBrowser] = useState(false)
 
   useEffect(() => {
-    setIsBrowser(true);
-  }, []);
+    setIsBrowser(true)
+  }, [])
 
   const modalContent = visible ? (
     <div css={modalStyle} tabIndex={-1}>
       <div css={swiperWrapper}>
         <div className="swiper-container">
-          <Swiper
-            loop={true}
-            onSwiper={setSwiper}
-          >
-              { data.map((img, idx) => (
-                <SwiperSlide
-                  key={idx}
-                >
-                  <Image image={img.childImageSharp.gatsbyImageData} alt={`image${idx}`}/>
-                </SwiperSlide>
-              ))
-              }
+          <Swiper loop={true} initialSlide={initialSlide} onSwiper={setSwiper}>
+            {data.map((img, idx) => (
+              <SwiperSlide key={idx}>
+                <Image
+                  image={img.childImageSharp.gatsbyImageData}
+                  alt={`image${idx}`}
+                />
+              </SwiperSlide>
+            ))}
           </Swiper>
           <div className="slider_ctrl">
-          <button
-            className="btn_slider prev"
-            onClick={() => {
-              swiper?.slidePrev();
-            }}
-          >
-            <img src="../../arrow-left.png" alt="prev" />
-          </button>
-          <button
-            className="btn_slider next"
-            onClick={() => {
-              swiper?.slideNext();
-            }}
-          >
-            <img src="../../arrow-right.png" alt="next" />
-          </button>
-        </div>
+            <button
+              className="btn_slider prev"
+              onClick={() => {
+                swiper?.slidePrev()
+              }}
+            >
+              <img src="../../arrow-left.png" alt="prev" />
+            </button>
+            <button
+              className="btn_slider next"
+              onClick={() => {
+                swiper?.slideNext()
+              }}
+            >
+              <img src="../../arrow-right.png" alt="next" />
+            </button>
+          </div>
         </div>
       </div>
       <div css={closeBtnStyle} onClick={onClose}>
@@ -68,17 +66,18 @@ const Modal = ({ data, visible, onClose }: Props) => {
   ) : null
 
   if (isBrowser) {
-    const modalElement = document.getElementById('modal-root') as HTMLElement;
-    return ReactDOM.createPortal(modalContent, modalElement);
+    const modalElement = document.getElementById('modal-root') as HTMLElement
+    return ReactDOM.createPortal(modalContent, modalElement)
   }
 
-  return null;
-};
+  return null
+}
 
-export default Modal;
+export default Modal
 
 const Image = styled(GatsbyImage)`
   height: 100%;
+  width: 100%;
 `
 
 const modalStyle = css`
@@ -116,14 +115,15 @@ const swiperWrapper = css`
   .swiper-slide {
     text-align: center;
     font-size: 18px;
+    height: 100vh;
   }
 
   .swiper-slide img {
     display: block;
-    width: 100%;
-    height: 100%;
+    height: auto;
+    top: 50%;
+    transform: translateY(-50%);
   }
-
 
   .btn_slider {
     position: fixed;
@@ -139,7 +139,6 @@ const swiperWrapper = css`
       right: -50px;
     }
   }
-
 `
 
 const closeBtnStyle = css`

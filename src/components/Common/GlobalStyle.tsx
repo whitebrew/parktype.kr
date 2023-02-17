@@ -1,6 +1,8 @@
 import { Global, css } from '@emotion/react'
 
 const defaultStyle = css`
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
+
   html,
   body,
   div,
@@ -111,8 +113,9 @@ const defaultStyle = css`
   html {
   }
   body {
-    font-family: 'sans-serif';
-    line-height: 1;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 400;
+    line-height: 1.3;
   }
   menu,
   ol,
@@ -147,9 +150,7 @@ const defaultStyle = css`
   * {
     box-sizing: border-box;
   }
-`;
-
-
+`
 
 const GlobalStyle = function () {
   return <Global styles={defaultStyle} />

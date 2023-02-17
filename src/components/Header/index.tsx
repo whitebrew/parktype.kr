@@ -1,13 +1,16 @@
-import { css } from "@emotion/react"
-import styled from "@emotion/styled"
-import LinkButton from "./LinkButton"
-import Introduction from "./Introduction"
-import Logo from "./Logo"
-import Title from "components/Content/Title"
-import { ThemeType } from "types/ContentItem.types"
+import { css } from '@emotion/react'
+import styled from '@emotion/styled'
+import LinkButton from './LinkButton'
+import Introduction from './Introduction'
+import Logo from './Logo'
+import Title from 'components/Content/Title'
+import { ThemeType } from 'types/ContentItem.types'
 
-const Header = ({onClick}: {onClick: (value : ThemeType['currentThemeTitle']) => void}) => {
-
+const Header = ({
+  onClick,
+}: {
+  onClick: (value: ThemeType['currentThemeTitle']) => void
+}) => {
   const headerStyle = css`
     color: #ffffff;
     font-size: 14px;
@@ -34,36 +37,43 @@ const Header = ({onClick}: {onClick: (value : ThemeType['currentThemeTitle']) =>
   return (
     <header css={headerStyle}>
       <div className="headerInfo">
-        <Logo/>
-        <Introduction/>
+        <Logo />
+        <Introduction />
       </div>
       <ButtonGroup>
         <LinkButton text="Contact" link="mailto:ppparktype@gmail.com" />
-        <LinkButton text="Instagram" link="https://www.instagram.com/parktype" />
+        <LinkButton
+          text="Instagram"
+          link="https://www.instagram.com/parktype"
+        />
+        <LinkButton text="Shop" link="https://smartstore.naver.com/parktype" />
       </ButtonGroup>
       <StyleTheme>
-        <Title text='Page Display' align="center"/>
-        <ButtonGroup>
+        <Title text="Page Display" align="center" />
+        <ThemeButtonGroup>
           <LinkButton text="White" link="#" onClick={onClick} />
           <LinkButton text="Black" link="#" onClick={onClick} />
           <LinkButton text="Cream" link="#" onClick={onClick} />
           <LinkButton text="Neon" link="#" onClick={onClick} />
-        </ButtonGroup>
+        </ThemeButtonGroup>
       </StyleTheme>
     </header>
   )
-} 
+}
 
 export default Header
-
-
 
 const ButtonGroup = styled.div`
   display: flex;
   margin-top: 1rem;
+  flex-wrap: no-wrap;
+  justify-content: space-between;
+`
+const ThemeButtonGroup = styled.div`
+  display: flex;
+  margin-top: 1rem;
   flex-wrap: wrap;
   justify-content: space-between;
-  
 `
 
 const StyleTheme = styled.div`

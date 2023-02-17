@@ -1,8 +1,7 @@
 import { css } from '@emotion/react'
 import { FontStyle } from 'types/ContentItem.types'
 
-const Table = ({data}:{data: FontStyle[]}) => {
-
+const Table = ({ data }: { data: FontStyle[] }) => {
   const tableStyle = css`
     margin-top: 20px;
     table {
@@ -12,13 +11,14 @@ const Table = ({data}:{data: FontStyle[]}) => {
         border-top: 1px solid #5c5c5c;
         text-align: left;
       }
-      td, th {
-        padding: 0.3rem 0.1rem 0 0;
+      td,
+      th {
+        padding: 0.3rem 0.1rem;
         font-size: 12px;
         line-height: 1.2;
       }
       th {
-        font-weight: 500;
+        font-weight: 700;
       }
     }
   `

@@ -1,6 +1,14 @@
 import { css } from '@emotion/react'
 
-const Paragraph = ({productionPeriod, format ,spec}:{productionPeriod:string, format:string[], spec:string[]}) => {
+const Paragraph = ({
+  productionPeriod,
+  format,
+  spec,
+}: {
+  productionPeriod: string
+  format: string[]
+  spec: string[]
+}) => {
   const paragraphStyle = css`
     line-height: 1.3;
     .font-info {
@@ -11,7 +19,7 @@ const Paragraph = ({productionPeriod, format ,spec}:{productionPeriod:string, fo
         span {
           &:first-of-type {
             flex-shrink: 0;
-            font-weight: bold;
+            font-weight: 700;
             margin-right: 4px;
           }
         }
@@ -23,18 +31,30 @@ const Paragraph = ({productionPeriod, format ,spec}:{productionPeriod:string, fo
       }
     }
   `
-   
+
   return (
     <div css={paragraphStyle}>
-      <div className='font-info'>
-        <p><span>Years of Production: </span><span>{productionPeriod}</span></p>
+      <div className="font-info">
+        <p>
+          <span>Years of Production: </span>
+          <span>{productionPeriod}</span>
+        </p>
         <p>
           <span>Format: </span>
-          <span>{format}</span>
+          {/* <span>{format}</span> */}
+          <span>
+            {format.map((item) => (
+              <p>{item}</p>
+            ))}
+          </span>
         </p>
         <p>
           <span>Spec: </span>
-          <span>{spec}</span>
+          <span>
+            {spec.map((item) => (
+              <p>{item}</p>
+            ))}
+          </span>
         </p>
       </div>
     </div>
